@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python 机场签到
 # -*- coding: utf-8 -*-
 
 # @Author  : wzdnzd
