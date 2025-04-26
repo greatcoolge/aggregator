@@ -1,0 +1,192 @@
+{
+    "domains": [   // 需要管理的域名相关配置
+        {
+            "name": "",   // 域名的名字（自定义）
+            "sub": [],    // 需要关注的子域名列表（可以为空）
+            "domain": "", // 主域名
+            "enable": true,  // 是否启用这个域名条目
+            "rename": "",    // 重命名后的显示名字
+            "include": "",   // 包含哪些关键字（筛选用）
+            "exclude": "",   // 排除哪些关键字（筛选用）
+            "push_to": [],   // 将处理后的内容推送到哪里（比如存储仓库名）
+            "ignorede": true,  // 是否忽略流量明细（通常是"ignore de"的缩写）
+            "liveness": true, // 是否检测活跃性（是否在线）
+            "tag": "",        // 标签
+            "rate": 2.5,      // 汇率或比例（比如兑换时的比例）
+            "count": 2,       // 计数，比如订阅次数
+            "coupon": "",     // 优惠券代码
+            "secure": false,  // 是否启用安全模式
+            "renew": {        // 续费相关配置
+                "account": [  // 登录账号列表
+                    {
+                        "email": "",    // 登录用的邮箱
+                        "passwd": "",   // 登录密码
+                        "ticket": {     // 工单系统相关设置
+                            "enable": true,     // 是否启用工单
+                            "autoreset": false, // 是否自动重置流量
+                            "subject": "",      // 工单标题
+                            "message": "",      // 工单内容
+                            "level": 1          // 工单紧急程度
+                        }
+                    }
+                ],
+                "plan_id": 3,    // 套餐 ID（选择的订阅套餐）
+                "package": "",   // 套餐名字
+                "method": 1,     // 续费方式（可能代表月付、年付等）
+                "coupon_code": "", // 续费时使用的优惠码
+                "chatgpt": {       // ChatGPT 相关服务配置
+                    "enable": true,    // 是否启用 ChatGPT
+                    "regex": "",       // 正则匹配（处理回复内容）
+                    "operate": "IN"    // 操作方式，比如包含 IN / 排除 OUT
+                }
+            }
+        }
+    ],
+    "crawl": {    // 爬取外部资源的配置
+        "enable": true,   // 是否启用整体爬取功能
+        "exclude": "",    // 需要排除的关键词
+        "threshold": 5,   // 爬取阈值，比如最少提取5个条目
+        "singlelink": true, // 是否仅允许单链接爬取
+        "persist": {     // 持久化存储的地方
+            "subs": "crawledsubs",      // 保存爬取到的订阅数据
+            "proxies": "crawledproxies" // 保存爬取到的代理节点数据
+        },
+        "config": {    // 通用爬取配置
+            "rename": "",   // 重命名规则
+            "include": "",  // 包含的关键字
+            "exclude": "",  // 排除的关键字
+            "xxxxxxx": ""   // 保留项（自定义）
+        },
+        "telegram": {    // Telegram 爬取配置
+            "enable": true,    // 是否启用 Telegram 爬取
+            "pages": 5,        // 要爬取多少页的消息
+            "exclude": "",     // 排除哪些消息
+            "users": {
+                "channel": {   // 频道爬取设置
+                    "include": "",  // 包含的关键词
+                    "exclude": "",  // 排除的关键词
+                    "config": {
+                        "rename": "", // 重命名
+                        "xxxxxx": ""  // 保留项
+                    },
+                    "push_to": []   // 推送到哪些存储目标
+                }
+            }
+        },
+        "google": {   // Google 搜索爬取配置
+            "enable": false, // 是否启用 Google 爬取
+            "exclude": "",   // 排除关键词
+            "notinurl": [],  // URL中不应包含的关键词
+            "push_to": []    // 推送到的地方
+        },
+        "github": {   // GitHub 仓库爬取配置
+            "enable": true,  // 是否启用
+            "pages": 2,      // 搜索多少页的内容
+            "push_to": [],   // 推送到的地方
+            "exclude": "",   // 排除关键词
+            "spams": []      // 垃圾信息关键词列表
+        },
+        "twitter": {  // Twitter 用户爬取
+            "enable": true,  // 是否启用
+            "users": {
+                "username": {
+                    "enable": true, // 是否启用这个用户
+                    "num": 30,      // 抓取多少条推文
+                    "include": "",  // 包含关键词
+                    "exclude": "",  // 排除关键词
+                    "config": {
+                        "rename": "", // 重命名
+                        "xxxxxx": ""  // 保留字段
+                    },
+                    "push_to": []    // 推送目标
+                }
+            }
+        },
+        "repositories": [  // 指定 GitHub 仓库爬取
+            {
+                "enable": false,   // 是否启用
+                "username": "",    // GitHub 用户名
+                "repo_name": "",   // 仓库名
+                "commits": 3,      // 抓取最近多少次提交
+                "exclude": "",     // 排除关键词
+                "push_to": []      // 推送的地方
+            }
+        ],
+        "pages": [  // 爬取网页
+            {
+                "enable": true,   // 是否启用
+                "url": "",        // 网页链接
+                "include": "",    // 包含关键词
+                "exclude": "",    // 排除关键词
+                "config": {
+                    "rename": ""  // 重命名规则
+                },
+                "push_to": []     // 推送目标
+            }
+        ],
+        "scripts": [  // 执行脚本爬取
+            {
+                "enable": false, // 是否启用
+                "script": "file#function",  // 文件名#函数名
+                "params": {
+                    "persist": {
+                        "fileid": ""   // 保存到的文件 ID
+                    },
+                    "any": "xxx",      // 任意参数（自定义）
+                    "config": {
+                        "enable": true,   // 是否启用
+                        "liveness": true, // 检测活跃性
+                        "exclude": "",    // 排除关键词
+                        "rename": "",     // 重命名
+                        "push_to": []     // 推送目标
+                    }
+                }
+            }
+        ]
+    },
+    "groups": {   // 分组配置
+        "xxx": {
+            "emoji": true,   // 是否使用表情（比如节点前加国旗）
+            "list": true,    // 是否生成列表
+            "targets": {    // 目标平台
+                "clash": "xxx-clash",      // Clash配置名
+                "singbox": "xxx-singbox",  // Sing-Box配置名
+                "v2ray": "xxx-v2ray"       // V2Ray配置名
+            },
+            "regularize": {   // 规范化处理
+                "enable": false,  // 是否启用
+                "locate": true,   // 是否定位IP归属地
+                "bits": 2         // IP定位位数（国别/地区）
+            }
+        }
+    },
+    "storage": {   // 存储相关配置
+        "engine": "xxx",   // 存储引擎名称
+        "base": "https://api.xxx.com",   // API地址
+        "domain": "https://xxx.com",     // 站点域名
+        "items": {   // 存储对象
+            "xxx-clash": {
+                "username": "",  // 账号名
+                "folderid": "",  // 文件夹ID
+                "fileid": ""     // 文件ID
+            },
+            "xxx-singbox": {
+                "fileid": ""     // Singbox文件ID
+            },
+            "xxx-v2ray": {
+                "username": "",  // 账号名
+                "fileid": ""     // 文件ID
+            },
+            "crawledsubs": {
+                "username": "",  // 账号名
+                "folderid": "",  // 文件夹ID
+                "fileid": ""     // 文件ID
+            },
+            "crawledproxies": {
+                "username": "",  // 账号名
+                "folderid": "",  // 文件夹ID
+                "fileid": ""     // 文件ID
+            }
+        }
+    }
+}
